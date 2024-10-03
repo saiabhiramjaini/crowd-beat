@@ -1,0 +1,6 @@
+1. npx create-next-app@latest crowd-beat
+
+https://next-auth.js.org/getting-started/example
+
+
+https://next-auth.js.org/configuration/initialization#route-handlers-app
