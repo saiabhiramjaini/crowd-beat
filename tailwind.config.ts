@@ -11,7 +11,14 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        mist: "#F2E8CF",
+        primarygreen: "#386641",
+        secondarygreen: "#6A994E"
       },
+      fontFamily: {
+        monoton: ["Monoton", "cursive"],
+        spline: ["Spline Sans mono", "monospace"],
+      }
     },
   },
   plugins: [],

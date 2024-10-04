@@ -2,6 +2,9 @@ import { prismaClient } from "@/app/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+// @ts-ignore
+import youtubesearchapi from "youtube-search-api";
+
 const CreateStreamSchema = z.object({
   creatorId: z.string(),
   url: z.string(),
@@ -20,12 +23,19 @@ export async function POST(req: NextRequest) {
 
     const extractId = data.url.split("?v=")[1];
 
+    const res = await youtubesearchapi.GetVideoDetails(extractId);
+    const thumbnail = res.thumbnail.thumbnails;
+    thumbnail.sort((a: {width: number},b: {width:number}) => a.width - b.width);
+
     const stream = await prismaClient.stream.create({
       data: {
         userId: data.creatorId,
         url: data.url,
         extractedId: extractId,
         type: "Youtube",
+        title: res.title ?? "Can't find title",
+        smallImg: thumbnail[0].url,
+        bigImg: thumbnail[thumbnail.length - 1].url
       },
     });
 
@@ -47,3 +57,6 @@ export async function GET(req: NextRequest) {
   });
   return NextResponse.json(streams);
 }
+
+
+
