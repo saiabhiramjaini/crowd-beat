@@ -1,22 +1,20 @@
 import React from 'react';
 
 interface TextFieldProps {
-    label: string;
     type: string;
     placeholder: string;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TextField = ({ label, type, placeholder, value, onChange }: TextFieldProps) => {
+export const TextField = ({ type, placeholder, value, onChange }: TextFieldProps) => {
   return (
     <div className="mb-4">
-      <label className="block text-primarygreen text-sm font-bold mb-2" htmlFor={label}>
+      {/* <label className="block text-primarygreen text-sm font-bold mb-2" htmlFor={label}>
         {label}
-      </label>
+      </label> */}
       <input
-        className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id={label}
+        className="shadow w-full appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type={type}
         placeholder={placeholder}
         value={value}
